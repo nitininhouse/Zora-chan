@@ -32,10 +32,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ClientProviders>
-          <SidebarProvider>
+          
            
               {/* Sidebar */}
-              <AppSidebar />
+              
               
               {/* Main Content Area */}
               <div className="flex flex-1 flex-col">
@@ -48,7 +48,7 @@ export default function RootLayout({
                 </main>
               </div>
           
-          </SidebarProvider>
+          
         </ClientProviders>
       </body>
     </html>
