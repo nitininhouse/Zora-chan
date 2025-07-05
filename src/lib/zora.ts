@@ -1,4 +1,3 @@
-
 import { setApiKey } from "@zoralabs/coins-sdk";
 
 if (typeof window !== "undefined") {
