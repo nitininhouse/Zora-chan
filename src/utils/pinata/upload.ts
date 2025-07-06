@@ -14,7 +14,7 @@ export const uploadToIPFS = async (file: File): Promise<string> => {
         }
       });
 
-    const url = `https://ipfs.io/ipfs/${upload.IpfsHash}`;
+    const url = `https://w3s.link/ipfs/${upload.IpfsHash}`;
     return url;
   } catch (error) {
     console.error("IPFS upload error:", error);
