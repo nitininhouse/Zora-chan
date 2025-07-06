@@ -148,7 +148,7 @@ const MangaCharacterMint: React.FC = () => {
           }
         });
 
-      const url = `https://w3s.link/ipfs/${upload.IpfsHash}`;
+      const url = `https://gateway.pinata.cloud/ipfs/${upload.IpfsHash}`;
       return url;
     } catch (error) {
       console.error("IPFS upload error:", error);
