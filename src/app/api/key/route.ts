@@ -1,5 +1,5 @@
   import { NextResponse } from "next/server";
-  import { pinata } from "@/utils/ipfs/config"
+  import { pinata } from "@/utils/ipfs/server-config"
 
   export const dynamic = "force-dynamic";
 
@@ -17,6 +17,7 @@
         },
         maxUses: 1,
       })
+      console.log("API Key Response:", keyData);
       return NextResponse.json(keyData, { status: 200 });
     } catch (error) {
       console.log(error);

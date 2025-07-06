@@ -137,6 +137,7 @@ const MangaCharacterMint: React.FC = () => {
     try {
       const keyRequest = await fetch("/api/key");
       const keyData = await keyRequest.json();
+      console.log("Received key data:", keyData);
 
       const upload = await pinataClient.upload.file(file)
         .key(keyData.JWT)
