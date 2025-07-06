@@ -3,16 +3,44 @@ import React, { useState, useRef } from 'react';
 import { Upload, X, Plus, Zap, Star, Award, Heart, Shield, Sword, Eye, Sparkles } from 'lucide-react';
 import { createCoin, DeployCurrency } from "@/lib/zora";
 import { parseEther } from "viem";
+
+
 import { useWalletClient, usePublicClient } from "wagmi";
-import { base } from "viem/chains"; 
-import type { Link } from "@/types/Link"; 
-import type { Stat } from "@/types/Stat";
-import type { FormData } from "@/types/FormData";
-import type { Errors } from '@/types/Errors';
-import { uploadToIPFS } from "@/utils/pinata/upload"; 
-import MintHeader from '@/components/mint/MintHeader';
-import TitlePanel from '@/components/mint/TitlePanel';
-import Footer from '@/components/mint/Footer';
+
+import { base } from "viem/chains";
+import { pinata } from "@/utils/ipfs/config";
+
+interface Stat {
+  name: string;
+  value: string;
+}
+
+interface Link {
+  platform: string;
+  url: string;
+}
+
+interface FormData {
+  name: string;
+  symbol: string;
+  description: string;
+  storyArc: string;
+  stats: Stat[];
+  links: Link[];
+  payoutRecipient: string;
+  platformReferrer: string;
+  initialPurchaseAmount: string;
+}
+
+interface Errors {
+  [key: string]: string | null;
+}
+
+interface PinataResponse {
+  IpfsHash: string;
+  PinSize: number;
+  Timestamp: string;
+}
 
 const MangaCharacterMint: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -28,6 +56,9 @@ const MangaCharacterMint: React.FC = () => {
   });
   const { data: walletClient } = useWalletClient();
   const publicClient = usePublicClient();
+
+
+
   const [artwork, setArtwork] = useState<File | null>(null);
   const [artworkPreview, setArtworkPreview] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState<boolean>(false);
@@ -40,7 +71,10 @@ const MangaCharacterMint: React.FC = () => {
     coinAddress?: `0x${string}`;
     transactionHash?: `0x${string}`;
   } | null>(null);
+
+
   const fileInputRef = useRef<HTMLInputElement>(null);
+
   const statIcons: { [key: string]: React.ComponentType<{ size?: number }> } = {
     'Power Level': Zap,
     'Special Ability': Star,
@@ -51,6 +85,11 @@ const MangaCharacterMint: React.FC = () => {
     'Vision': Eye,
     'Magic': Sparkles
   };
+
+  
+
+
+
 
   const handleInputChange = (field: keyof FormData, value: string): void => {
     setFormData(prev => ({
@@ -66,6 +105,7 @@ const MangaCharacterMint: React.FC = () => {
       }));
     }
   };
+
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const file = e.target.files?.[0];
     if (file) {
@@ -76,6 +116,7 @@ const MangaCharacterMint: React.FC = () => {
         }));
         return;
       }
+
       setArtwork(file);
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -92,10 +133,35 @@ const MangaCharacterMint: React.FC = () => {
     }
   };
 
+  const uploadToIPFS = async (file: File): Promise<string> => {
+    try {
+      const keyRequest = await fetch("/api/key");
+      const keyData = await keyRequest.json();
 
+      const upload = await pinata.upload.file(file)
+        .key(keyData.JWT)
+        .addMetadata({
+          name: file.name,
+          keyValues: {
+            type: 'character-content',
+            timestamp: new Date().toISOString()
+          }
+        });
+
+      const url = `https://w3s.link/ipfs/${upload.IpfsHash}`;
+      return url;
+    } catch (error) {
+      console.error("IPFS upload error:", error);
+      throw new Error(`Pinata upload failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  };
   const createCustomMetadata = async (): Promise<string> => {
     if (!artwork) throw new Error("Artwork is required");
+
+    // Upload artwork to IPFS first
     const imageUrl = await uploadToIPFS(artwork);
+
+    // Create links object
     const linksObject: Record<string, string> = {};
     formData.links.forEach(link => {
       if (link.platform && link.url) {
@@ -103,6 +169,7 @@ const MangaCharacterMint: React.FC = () => {
       }
     });
 
+    
     const metadata = {
       name: formData.name,
       symbol: formData.symbol,
@@ -228,7 +295,8 @@ const MangaCharacterMint: React.FC = () => {
     if (!validateForm()) {
       return;
     }
-
+    
+    // Set loading state after validation passes
     setIsUploading(true);
     if (!walletClient || !publicClient) {
       setErrors(prev => ({
@@ -255,6 +323,7 @@ const MangaCharacterMint: React.FC = () => {
         initialPurchaseWei: parseEther(formData.initialPurchaseAmount || "0.01"),
       };
 
+      
       const { address: coinAddress, hash: transactionHash } = await createCoin(
         coinParams,
         walletClient,
@@ -305,7 +374,22 @@ const MangaCharacterMint: React.FC = () => {
   return (
     <div className="min-h-screen bg-white text-black font-mono">
       {/* Header */}
-      <MintHeader />
+      <div className="bg-white border-b-8 border-black">
+        <div className="max-w-7xl mx-auto px-8 py-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="bg-black text-white px-4 py-2 font-black text-lg border-4 border-black">
+                ZORA-CHAN
+              </div>
+              <div className="text-2xl font-black">CHARACTER COIN CREATOR</div>
+            </div>
+            <div className="bg-red-500 text-white px-4 py-2 font-black text-sm border-2 border-black transform rotate-3">
+              MINT COIN!
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Error Display */}
       {errors.general && (
         <div className="max-w-7xl mx-auto px-8 py-4">
@@ -320,7 +404,25 @@ const MangaCharacterMint: React.FC = () => {
           {/* Form Section */}
           <div className="lg:col-span-2 space-y-8">
             {/* Title Panel */}
-            <TitlePanel/>
+            <div className="bg-white border-4 border-black p-8 transform -rotate-1 shadow-2xl">
+              <div className="absolute -top-4 -left-4 bg-black text-white px-4 py-2 font-black text-lg">
+                CHAPTER 1
+              </div>
+              <h1 className="text-4xl md:text-5xl font-black mb-4 uppercase">
+                <span
+                  style={{
+                    fontFamily: 'Impact, "Arial Black", sans-serif',
+                    textShadow: '4px 4px 0px #000',
+                    WebkitTextStroke: '2px #000',
+                    color: 'white'
+                  }}
+                >
+                  CREATE YOUR CHARACTER COIN
+                </span>
+              </h1>
+              <div className="text-xl text-gray-600 font-bold">キャラクターコインを作成</div>
+            </div>
+
             {/* Basic Info Panel */}
             <div className="bg-white border-4 border-black p-6 transform rotate-1 shadow-xl">
               <div className="absolute -top-4 -left-4 bg-red-500 text-white px-3 py-1 font-black text-sm">
@@ -747,9 +849,31 @@ const MangaCharacterMint: React.FC = () => {
           </div>
         </div>
       )}
+
       {/* Footer */}
-      <Footer/>
+      <footer className="bg-black text-white py-8 mt-16">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="text-center space-y-4">
+            <div className="text-2xl font-black">ZORA-CHAN CHARACTER COINS</div>
+            <div className="text-sm font-bold text-gray-400">
+              Built with Zora SDK • Deployed on Base • Powered by IPFS
+            </div>
+            <div className="flex justify-center space-x-8 text-sm font-bold">
+              <a href="https://zora.co" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400 transition-colors">
+                Zora Protocol
+              </a>
+              <a href="https://base.org" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400 transition-colors">
+                Base Network
+              </a>
+              <a href="https://ipfs.io" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400 transition-colors">
+                IPFS
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
+
 export default MangaCharacterMint;
