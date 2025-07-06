@@ -8,7 +8,7 @@ import { parseEther } from "viem";
 import { useWalletClient, usePublicClient } from "wagmi";
 
 import { base } from "viem/chains";
-import { pinata } from "@/utils/ipfs/config";
+import { pinataClient } from "@/utils/ipfs/client-config";
 
 interface Stat {
   name: string;
@@ -138,7 +138,7 @@ const MangaCharacterMint: React.FC = () => {
       const keyRequest = await fetch("/api/key");
       const keyData = await keyRequest.json();
 
-      const upload = await pinata.upload.file(file)
+      const upload = await pinataClient.upload.file(file)
         .key(keyData.JWT)
         .addMetadata({
           name: file.name,
