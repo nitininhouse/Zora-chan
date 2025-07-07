@@ -76,26 +76,16 @@ export function Navbar() {
                   <div className="grid gap-3 p-6 md:w-[400px] lg:w-[500px]">
                     <NavigationMenuLink asChild>
                       <Link
-                        href="/services/web-dev"
+                        href="/coins"
                         className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                       >
-                        <div className="text-sm font-medium leading-none">Web Development</div>
+                        <div className="text-sm font-medium leading-none">Coins</div>
                         <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                           Build modern web applications
                         </p>
                       </Link>
                     </NavigationMenuLink>
-                    <NavigationMenuLink asChild>
-                      <Link
-                        href="/services/consulting"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      >
-                        <div className="text-sm font-medium leading-none">Consulting</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Expert technical consulting
-                        </p>
-                      </Link>
-                    </NavigationMenuLink>
+                    
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
