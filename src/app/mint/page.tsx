@@ -4,11 +4,19 @@ import { Upload, X, Plus, Zap, Star, Award, Heart, Shield, Sword, Eye, Sparkles 
 import { createCoin, DeployCurrency } from "@/lib/zora";
 import { parseEther } from "viem";
 
+import { ethers } from "ethers";
 
 import { useWalletClient, usePublicClient } from "wagmi";
 
 import { base } from "viem/chains";
 import { pinataClient } from "@/utils/ipfs/client-config";
+
+const registryAbi = [
+  "function registerCoin(address coin) external"
+];
+
+const registryAddress = "0xEa55482C44Ced3f082Ab335fbBF4BcB179963f3c";
+
 
 interface Stat {
   name: string;
@@ -330,6 +338,10 @@ const MangaCharacterMint: React.FC = () => {
         walletClient,
         publicClient
       );
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+      const registry = new ethers.Contract(registryAddress, registryAbi, signer);
+      await registry.registerCoin(coinAddress);
 
       setMintedTokenData({
         imageHash: artwork?.name || 'artwork',
