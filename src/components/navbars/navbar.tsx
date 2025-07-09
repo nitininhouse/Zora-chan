@@ -18,84 +18,112 @@ import { WEBSITE_LOGO_PATH as LOGO_PATH, WEBSITE_NAME, WEBSITE_TITLE_FONT as WEB
 
 export function Navbar() {
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="flex h-16 items-center px-4">
-        <div className="flex items-center space-x-3">
-          <Link href="/" className="flex items-center space-x-3">
-            <Image 
-              src={LOGO_PATH} 
-              alt="Logo" 
-              width={32} 
-              height={32}
-              className="w-8 h-8"
-            />
-            <span className={`text-xl font-bold ${WEBSITE_FONT}`}>
+    <nav className="sticky top-0 z-50 w-full border-b-4 border-black bg-white shadow-2xl">
+      <div className="flex h-20 items-center px-6 relative">
+        
+        {/* Logo Section with Anime Badge */}
+        <div className="flex items-center space-x-3 relative">
+          <div className="absolute -top-3 -left-3 bg-black text-white px-2 py-1 font-black text-xs border-2 border-black transform rotate-3">
+            CRYPTO
+          </div>
+          <Link href="/" className="flex items-center space-x-3 transform hover:scale-105 transition-transform duration-300">
+            <div className="relative">
+              <Image 
+                src={LOGO_PATH} 
+                alt="Logo" 
+                width={40} 
+                height={40}
+                className="w-10 h-10 border-2 border-black shadow-lg"
+              />
+            </div>
+            <span className={`text-2xl font-black uppercase ${WEBSITE_FONT} transform hover:rotate-1 transition-transform duration-300`}>
               {WEBSITE_NAME}
             </span>
           </Link>
         </div>
-        <div className="flex flex-1 items-center justify-end gap-4">
+
+        {/* Navigation and Actions */}
+        <div className="flex flex-1 items-center justify-end gap-6">
           <NavigationMenu>
-            <NavigationMenuList>
+            <NavigationMenuList className="gap-2">
+
+
+            <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link 
+                    href="/mint" 
+                    className="group inline-flex h-12 w-max items-center justify-center rounded-none bg-white px-6 py-3 text-sm font-black uppercase transition-all hover:bg-black hover:text-white border-2 border-black shadow-lg hover:shadow-xl transform hover:rotate-1 hover:scale-105 duration-300"
+                  >
+                    ⚡ Mint
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
                   <Link 
-                    href="/" 
-                    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                    href="/coins" 
+                    className="group inline-flex h-12 w-max items-center justify-center rounded-none bg-white px-6 py-3 text-sm font-black uppercase transition-all hover:bg-black hover:text-white border-2 border-black shadow-lg hover:shadow-xl transform hover:-rotate-1 hover:scale-105 duration-300"
                   >
-                    Home
+                    🏠 coins
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
               
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild>
-                  <Link 
-                    href="/mint" 
-                    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
-                  >
-                    Mint
-                  </Link>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
+              
 
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
                   <Link 
                     href="/trade" 
-                    className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                    className="group inline-flex h-12 w-max items-center justify-center rounded-none bg-white px-6 py-3 text-sm font-black uppercase transition-all hover:bg-black hover:text-white border-2 border-black shadow-lg hover:shadow-xl transform hover:-rotate-1 hover:scale-105 duration-300"
                   >
-                    Trade
+                    💰 Trade
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link 
+                    href="/vote" 
+                    className="group inline-flex h-12 w-max items-center justify-center rounded-none bg-white px-6 py-3 text-sm font-black uppercase transition-all hover:bg-black hover:text-white border-2 border-black shadow-lg hover:shadow-xl transform hover:rotate-1 hover:scale-105 duration-300"
+                  >
+                    ⚡ Vote
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Services</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="grid gap-3 p-6 md:w-[400px] lg:w-[500px]">
-                    <NavigationMenuLink asChild>
-                      <Link
-                        href="/coins"
-                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                      >
-                        <div className="text-sm font-medium leading-none">Coins</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Build modern web applications
-                        </p>
-                      </Link>
-                    </NavigationMenuLink>
-                    
-                  </div>
-                </NavigationMenuContent>
+                <NavigationMenuLink asChild>
+                  <Link 
+                    href="/mycoins" 
+                    className="group inline-flex h-12 w-max items-center justify-center rounded-none bg-white px-6 py-3 text-sm font-black uppercase transition-all hover:bg-black hover:text-white border-2 border-black shadow-lg hover:shadow-xl transform hover:rotate-1 hover:scale-105 duration-300"
+                  >
+                    ⚡ Profile
+                  </Link>
+                </NavigationMenuLink>
               </NavigationMenuItem>
+
+              
             </NavigationMenuList>
           </NavigationMenu>
           
-          <ConnectButton />
+          {/* Connect Button with Anime Style */}
+          <div className="relative">
+            <div className="absolute -top-2 -right-2 bg-black text-white px-2 py-1 font-black text-xs border-2 border-black transform -rotate-12">
+              WALLET
+            </div>
+            <div className="transform hover:scale-105 transition-transform duration-300">
+              <ConnectButton />
+            </div>
+          </div>
           
-          <ModeToggle />
+         
         </div>
+
+        {/* Decorative Elements */}
+        <div className="absolute top-1 right-1 w-2 h-2 bg-black transform rotate-45"></div>
+        <div className="absolute bottom-1 left-1 w-2 h-2 bg-black transform rotate-45"></div>
       </div>
     </nav>
   )
