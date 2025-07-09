@@ -169,8 +169,8 @@ export default function ClientProviders({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="system"
-      enableSystem
+      defaultTheme="dark"
+      enableSystem={false}  
       disableTransitionOnChange>
       <WagmiProvider config={wagmiConfig}>
         <QueryClientProvider client={queryClient}>
