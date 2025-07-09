@@ -219,7 +219,7 @@ const CoinTrade: React.FC<CoinTradeProps> = ({
           </div>
         )}
   
-        {/* Decorative Elements */}
+        
         <div className="fixed top-10 right-10 text-6xl transform rotate-12 animate-pulse">
           💥
         </div>
@@ -231,4 +231,7 @@ const CoinTrade: React.FC<CoinTradeProps> = ({
   );
 };
 
-export default CoinTrade;
+
+export default function TradePage() {
+  return <CoinTrade />;
+}
