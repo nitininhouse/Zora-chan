@@ -1,6 +1,7 @@
 # 🥷 Zora-chan: The Manga-Inspired Coin Creation & Community Platform
 
-![generated-image(2)](https://github.com/user-attachments/assets/0af1138c-bbc2-4744-b8b9-93b574b68995)
+<img src="https://github.com/user-attachments/assets/0af1138c-bbc2-4744-b8b9-93b574b68995" width="400" alt="Zora-chan logo" />
+
 
 
 **Zora-chan** is a playful, decentralized platform for minting, trading, and interacting with custom coins on the Zora protocol. It’s designed for creators, manga fans, and Web3 explorers who want to launch their own coins, build communities, and engage through polls and trading—all in a manga-inspired interface.
