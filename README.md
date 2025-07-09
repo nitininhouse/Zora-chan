@@ -1,4 +1,4 @@
-# 🥷 Zora-chan: The Manga-Inspired Coin Creation & Community Platform
+![image](https://github.com/user-attachments/assets/4e4ab5c8-36d8-43e3-895a-2522cb2f5189)# 🥷 Zora-chan: The Manga-Inspired Coin Creation & Community Platform
 
 ![generated-image(2)](https://github.com/user-attachments/assets/0af1138c-bbc2-4744-b8b9-93b574b68995)
 
@@ -35,6 +35,10 @@
 - This registry is the source of truth for all Zora-chan coins—no backend or centralized database required.
 - The registry supports both Base Mainnet and Base Sepolia (testnet).
 
+![Screenshot from 2025-07-09 12-40-39](https://github.com/user-attachments/assets/df6f4999-75dd-4c0f-a54b-9ffc8a44bed0)
+
+
+
 ---
 
 ## 🔍 Explore & Discover Coins
@@ -50,6 +54,9 @@
 - **Trade UI:** Buy or sell any CoinV4 token (with liquidity) right from the platform.
 - **Wallet Integration:** Connect your wallet to execute trades securely.
 - **Network-aware:** Trading is only enabled on supported networks (Base Mainnet for production).
+
+![Screenshot from 2025-07-09 12-41-45](https://github.com/user-attachments/assets/1bf40371-7f4c-495a-bb9a-ef9c18077334)
+
 
 ---
 
