@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import { WagmiProvider, createConfig, http } from 'wagmi';
 import { mainnet, polygon, optimism, arbitrum, base, sepolia, baseSepolia } from 'wagmi/chains';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { RainbowKitProvider, connectorsForWallets, darkTheme } from '@rainbow-me/rainbowkit';
+import { RainbowKitProvider, connectorsForWallets, lightTheme } from '@rainbow-me/rainbowkit';
 import {
   metaMaskWallet,
   walletConnectWallet,
@@ -130,7 +130,7 @@ const wagmiConfig = createConfig({
 const queryClient = new QueryClient();
 
 // Custom black/whitish theme
-const customTheme = darkTheme({
+const customTheme = lightTheme({
   accentColor: '#000000', // Black accent color
   accentColorForeground: '#ffffff', // White text on black
   borderRadius: 'medium',
@@ -169,7 +169,7 @@ export default function ClientProviders({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider
       attribute="class"
-      defaultTheme="dark"
+      defaultTheme="light"
       enableSystem={false}  
       disableTransitionOnChange>
       <WagmiProvider config={wagmiConfig}>
