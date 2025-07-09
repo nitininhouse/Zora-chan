@@ -15,7 +15,10 @@ const registryAbi = [
   "function registerCoin(address coin) external"
 ];
 
-const registryAddress = "0xEa55482C44Ced3f082Ab335fbBF4BcB179963f3c";
+const registryAddresses: { [chainId: number]: string } = {
+  8453: "0x5e441621808217AcAEeb41E780a59abF9a855206",   
+  84532: "0xEa55482C44Ced3f082Ab335fbBF4BcB179963f3c", 
+};
 
 
 interface Stat {
@@ -338,6 +341,11 @@ const MangaCharacterMint: React.FC = () => {
         walletClient,
         publicClient
       );
+      const chainId = await publicClient.getChainId();
+      const registryAddress = registryAddresses[chainId];
+      if (!registryAddress) {
+        throw new Error("No registry contract deployed on this network.");
+      }
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
       const registry = new ethers.Contract(registryAddress, registryAbi, signer);
