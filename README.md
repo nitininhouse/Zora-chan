@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/4e4ab5c8-36d8-43e3-895a-2522cb2f5189)# 🥷 Zora-chan: The Manga-Inspired Coin Creation & Community Platform
+# 🥷 Zora-chan: The Manga-Inspired Coin Creation & Community Platform
 
 ![generated-image(2)](https://github.com/user-attachments/assets/0af1138c-bbc2-4744-b8b9-93b574b68995)
 
