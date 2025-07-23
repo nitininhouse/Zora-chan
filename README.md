@@ -120,6 +120,7 @@
 - No backend required—everything is on-chain and decentralized.
 - Manga-inspired, fun, and easy for everyone.
 - Perfect for creators, DAOs, and Web3 communities.
+  
 
 ---
 
