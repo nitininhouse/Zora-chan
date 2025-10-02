@@ -2,9 +2,27 @@
 
 <img src="https://github.com/user-attachments/assets/0af1138c-bbc2-4744-b8b9-93b574b68995" width="400" alt="Zora-chan logo" />
 
+**Zora-chan** is a playful, decentralized platform for minting, trading, and interacting with custom coins on the Zora protocol. It's designed for creators, manga fans, and Web3 explorers who want to launch their own coins, build communities, and engage through polls and trading—all in a manga-inspired interface.
 
+## ⚡ Quick Start
 
-**Zora-chan** is a playful, decentralized platform for minting, trading, and interacting with custom coins on the Zora protocol. It’s designed for creators, manga fans, and Web3 explorers who want to launch their own coins, build communities, and engage through polls and trading—all in a manga-inspired interface.
+```bash
+# Clone the repository
+git clone https://github.com/your-username/zora-chan.git
+cd zora-chan
+
+# Install dependencies
+pnpm install
+
+# Set up environment variables
+cp env.template .env.local
+# Edit .env.local with your configuration
+
+# Start development server
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ---
 
@@ -38,8 +56,6 @@
 
 ![Screenshot from 2025-07-09 12-40-39](https://github.com/user-attachments/assets/df6f4999-75dd-4c0f-a54b-9ffc8a44bed0)
 
-
-
 ---
 
 ## 🔍 Explore & Discover Coins
@@ -57,7 +73,6 @@
 - **Network-aware:** Trading is only enabled on supported networks (Base Mainnet for production).
 
 ![Screenshot from 2025-07-09 12-41-45](https://github.com/user-attachments/assets/1bf40371-7f4c-495a-bb9a-ef9c18077334)
-
 
 ---
 
@@ -107,6 +122,14 @@
 
 ## 📚 Documentation & References
 
+### Project Documentation
+
+- [Development Guide](docs/DEVELOPMENT.md) - Complete setup and contribution guide
+- [API Documentation](docs/API.md) - API endpoints and integration guides
+- [Deployment Guide](docs/DEPLOYMENT.md) - Deployment instructions and configuration
+
+### External References
+
 - [Zora Coins SDK Docs](https://docs.zora.co/coins/sdk/)
 - [Zora Protocol](https://zora.co/)
 - [Base Network](https://base.org/)
@@ -120,7 +143,6 @@
 - No backend required—everything is on-chain and decentralized.
 - Manga-inspired, fun, and easy for everyone.
 - Perfect for creators, DAOs, and Web3 communities.
-  
 
 ---
 
