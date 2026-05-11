@@ -87,6 +87,15 @@
 
 ---
 
+## Developer Workflow
+
+- Run `npm ci` before local development so dependency versions match CI.
+- Run `npm run typecheck`, `npm run docs:check`, and `npm run build` before opening a pull request.
+- Generated project documentation lives in [`docs/PROJECT_STRUCTURE.md`](docs/PROJECT_STRUCTURE.md). Regenerate it with `npm run docs:generate` after route, component, API, or package script changes.
+- A GitHub Actions CI template is included at [`docs/ci-workflow.yml`](docs/ci-workflow.yml). Copy it to `.github/workflows/ci.yml` to run install, typecheck, generated documentation verification, and production build checks on pull requests.
+
+---
+
 ## 📝 How It Works
 
 1. User mints a coin: all details and artwork are uploaded to IPFS; coin is created on Zora.
