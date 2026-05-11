@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "docs:generate": "node scripts/generate-docs.mjs",
+    "docs:check": "npm run docs:generate && git diff --exit-code docs/PROJECT_STRUCTURE.md"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.14",
