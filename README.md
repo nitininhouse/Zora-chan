@@ -125,3 +125,8 @@
 ---
 
 **Start minting your manga universe today—only on Zora-chan!**
+
+## DevEx Automation
+
+- `npm run docs:generate` emits `docs/project-overview.md`.
+- The output summarizes scripts + dependencies for faster onboarding.
