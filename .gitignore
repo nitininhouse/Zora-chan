@@ -40,3 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# generated docs (npm run docs:generate)
+docs/DEVELOPER.md
+

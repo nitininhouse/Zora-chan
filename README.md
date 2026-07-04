@@ -97,6 +97,19 @@
 
 ---
 
+## 🧪 Developer workflow
+
+```bash
+npm ci
+npm run verify   # lint → test → build → docs
+```
+
+Copy CI templates from `docs/ci-workflow.yml` and `docs/deploy-workflow.yml` into `.github/workflows/` to enable GitHub Actions.
+
+See generated docs: `npm run docs:generate` → `docs/DEVELOPER.md`
+
+---
+
 ## 🛡️ Security & Limitations
 
 - All coin ownership checks and registry are on-chain.
