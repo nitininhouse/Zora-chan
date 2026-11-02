@@ -97,6 +97,23 @@
 
 ---
 
+## 🧑‍💻 Development
+
+```bash
+npm install
+npm run dev     # start the dev server
+npm test        # run the test suite (Node's built-in test runner)
+npm run build   # production build
+```
+
+- **CI:** `.github/workflows/ci.yml` installs dependencies, runs the tests and builds the app on every push and on every pull request.
+- **Releases:** pushing a tag like `v0.2.0` triggers `.github/workflows/release.yml`. It installs, tests and builds the app in a read-only job, then (only if that succeeds) publishes a GitHub release with generated release notes and a docs bundle (README and changelog).
+- **Deployment:** after a release is published, the workflow deploys to Vercel. Set the `VERCEL_TOKEN`, `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID` repository secrets to enable it; without them the deploy step is skipped.
+- **Workflow security:** third-party actions are pinned to full commit SHAs, and only the final release job has write access.
+- **Tests:** add new tests under `tests/` using the `*.test.mjs` naming pattern.
+
+---
+
 ## 🛡️ Security & Limitations
 
 - All coin ownership checks and registry are on-chain.
