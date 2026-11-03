@@ -9,7 +9,9 @@ const pkg = JSON.parse(readFileSync(path.join(root, "package.json"), "utf8"));
 
 test("package.json defines the core scripts", () => {
   for (const name of ["dev", "build", "start", "lint", "test"]) {
-    assert.equal(typeof pkg.scripts[name], "string", `missing script: ${name}`);
+    const script = pkg.scripts[name];
+    assert.equal(typeof script, "string", `missing script: ${name}`);
+    assert.notEqual(script.trim(), "", `empty script: ${name}`);
   }
 });
 
